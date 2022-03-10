@@ -108,8 +108,14 @@ if (promptFight === "" || promptFight === null) {
   }
 }
 // fight function (now with parameter for enemy's object holding name, health, and attack values)
+
 var fight = function(enemy) {
+  var isPlayerTurn = true;
+if (Math.random() > 0.5) {
+  isPlayerTurn = false;
+} 
   while (playerInfo.health > 0 && enemy.health > 0) {
+    if(isPlayerTurn){
     // ask player if they'd like to fight or skip using fightOrSkip function
     if (fightOrSkip()) {
       // if true, leave fight by breaking loop
@@ -154,6 +160,9 @@ var fight = function(enemy) {
     } else {
       window.alert(playerInfo.name + ' still has ' + playerInfo.health + ' health left.');
     }
+  }
+  // switch turn order for next round
+  isPlayerTurn = !isPlayerTurn;
   }
 };
 
